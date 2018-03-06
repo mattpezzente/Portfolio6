@@ -8,6 +8,8 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var mongoose = require('mongoose');
+var expressHbs = require("express-handlebars");
+
 
 var index = require("./routes/index");
 
@@ -19,8 +21,9 @@ mongoose.connect('mongodb://localhost:27017/shopping');
 
 
 // view engine setup
+app.engine(".hbs", expressHbs({ defaultLayout: "layout", extname: ".hbs" }));
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+app.set("view engine", ".hbs");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
