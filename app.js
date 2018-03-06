@@ -7,12 +7,16 @@ var bodyParser = require("body-parser");
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var mongoose = require('mongoose');
 
 var index = require("./routes/index");
 
 var app = express();
 
 require('./config/passport');
+
+mongoose.connect('mongodb://localhost:27017/shopping');
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
