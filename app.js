@@ -10,7 +10,6 @@ var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var expressHbs = require("express-handlebars");
 
-
 var index = require("./routes/index");
 
 var app = express();
@@ -33,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
 app.use(flash());
-app.ush(passport.initialize());
+app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
 
