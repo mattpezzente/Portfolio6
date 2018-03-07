@@ -9,6 +9,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var expressHbs = require("express-handlebars");
+var validator = require('express-validator');
 
 var index = require("./routes/index");
 
@@ -29,6 +30,7 @@ app.set("view engine", ".hbs");
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
 app.use(flash());
