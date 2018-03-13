@@ -17,10 +17,8 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-require('./config/passport');
-
 mongoose.connect('mongodb://localhost:27017/shopping');
-
+require('./config/passport');
 
 // view engine setup
 app.engine(".hbs", expressHbs({ defaultLayout: "layout", extname: ".hbs" }));
@@ -38,7 +36,7 @@ app.use(session({
   secret: 'mysupersecret', 
   resave: false, 
   saveUninitialized: false,
-  store: new MongoStore({ mongooseConnect: mongoose.connection }),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: { maxAge: 180 * 60 * 1000 }
 }));
 app.use(flash());
