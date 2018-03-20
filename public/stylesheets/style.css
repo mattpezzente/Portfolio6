@@ -21,3 +21,21 @@ html [type=button] {
   align-items: center;
   justify-content: space-between;
 }
+
+.color-white {
+  color: #fff!important
+}
+
+.btn-social>:first-child {
+  top: 5px!important;
+}
+
+.social-seperator {
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0;
+}
+
+.btn-social {
+  margin-bottom: 0.5rem;
+}
