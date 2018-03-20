@@ -11,17 +11,27 @@ var mongoose = require('mongoose');
 var expressHbs = require("express-handlebars");
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+var helpers = require('./helpers')
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
 
 var app = express();
 
+var hbs = expressHbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+      currencyFormatter: function (price) { return helpers.currencyFormatter.format(price, {code: 'USD'}) },        
+    },
+    defaultLayout: "layout",
+    extname: ".hbs"
+});
+
 mongoose.connect('mongodb://localhost:27017/shopping');
 require('./config/passport');
 
 // view engine setup
-app.engine(".hbs", expressHbs({ defaultLayout: "layout", extname: ".hbs" }));
+app.engine(".hbs", hbs.engine);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", ".hbs");
 
@@ -45,6 +55,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(function (req, res, next) {
+  res.locals.h = helpers
   res.locals.login = req.isAuthenticated();
   res.locals.session = req.session;
   next();
