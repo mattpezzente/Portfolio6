@@ -29,6 +29,7 @@ var hbs = expressHbs.create({
 
 mongoose.connect('mongodb://localhost:27017/shopping');
 require('./config/passport');
+require('./config/passport-facebook');
 
 // view engine setup
 app.engine(".hbs", hbs.engine);

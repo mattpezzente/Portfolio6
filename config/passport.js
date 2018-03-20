@@ -66,7 +66,7 @@ passport.use('local.signin', new LocalStrategy({
       return done(err);
     }
     if (!user) {
-      return done(null, false, {message: 'Email is already in use.'});
+      return done(null, false, {message: 'User doesn\'t exist.'});
     }
     if (!user.validPassword(password)) {
       return done(null, false, {message: 'Wrong password.'});
