@@ -28,8 +28,23 @@ html {
   height: 20px;
 }
 
-.card .price {
+.card {
+  border: 2px solid #000066;
+}
+
+.card-title,
+.price {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.card,
+.card-title {
   font-weight: bold;
+}
+
+.price {
+  font-weight: bolder;
 }
 
 .main-content {
@@ -72,4 +87,10 @@ html [type="button"] {
 
 select.col-sm-2 {
   max-width: initial;
+}
+
+.card-img-top {
+  max-width: 15rem;
+  align-self: center;
+  padding-top: 1rem;
 }

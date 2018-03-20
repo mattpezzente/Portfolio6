@@ -10,8 +10,6 @@
     {{/each}}
 </div>
 
-
-
 {{# each products}}
 <div class="row">
     {{# each this}}
@@ -20,11 +18,31 @@
             <img class="card-img-top" src="{{this.imagePath}}" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{this.title}}</h5>
-                <p class="card-text description">{{this.description}}</p>
                 <div class="price">
                     {{currencyFormatter this.price}}
                 </div>
+                <a type="button" data-toggle="modal" data-target="#details" class="btn btn-primary pull-left">Details</a>
                 <a href="/add-to-cart/{{this._id}}" class="btn btn-primary pull-right">Add To Cart</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="details" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{this.title}} Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <img class="card-img-top" src="{{this.imagePath}}" alt="...">
+                <div class="modal-body">
+                    {{this.description}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="/add-to-cart/{{this._id}}" class="btn btn-primary pull-right">Add To Cart</a>
+                </div>
             </div>
         </div>
     </div>
