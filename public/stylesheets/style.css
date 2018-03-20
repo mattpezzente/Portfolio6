@@ -1,3 +1,23 @@
 .card .price {
   font-weight: bold;
 }
+
+.main-content {
+  padding-top: 2rem;
+}
+
+.row-spacing {
+  padding-top: 1rem;
+}
+
+html [type=button] {
+  -webkit-appearance: initial;
+}
+
+.list-group-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
