@@ -3,10 +3,12 @@ var router = express.Router();
 var Cart = require("../models/cart");
 
 var Product = require("../models/product");
+var Order = require("../models/order");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  var products = Product.find(function(err, docs) {
+  var successMsg = req.flash("success")[0];
+  Product.find(function(err, docs) {
     var productChunks = [];
     var chunkSize = 3;
     for (var i = 0; i < docs.length; i += chunkSize) {
@@ -14,7 +16,9 @@ router.get("/", function(req, res, next) {
     }
     res.render("shop/index", {
       title: "Shopping Cart",
-      products: productChunks
+      products: productChunks,
+      successMsg: successMsg,
+      noMessages: !successMsg
     });
   });
 });
@@ -75,9 +79,7 @@ router.post("/checkout", isLoggedIn, function(req, res, next) {
     return res.redirect("/shopping-cart");
   }
   var cart = new Cart(req.session.cart);
-
   var stripe = require("stripe")("sk_test_mXbN0ZMOKhbFjuUfxa9NohUF");
-
   stripe.charges.create(
     {
       amount: cart.totalPrice * 100,
@@ -100,7 +102,8 @@ router.post("/checkout", isLoggedIn, function(req, res, next) {
       order.save(function(err, result) {
         req.flash("success", "Successfully bought product!");
         req.session.cart = null;
-        res.redirect("/");
+        // res.redirect("/");
+        console.log(result);
       });
     }
   );
