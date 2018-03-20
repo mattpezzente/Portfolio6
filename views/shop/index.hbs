@@ -1,3 +1,17 @@
+<div class="page-header">
+    {{# each products}}
+    <div style="display: flex;">
+        {{# each this}}
+        <div>
+            <img class="img-fluid" style="width: 7rem;" src="{{this.imagePath}}" alt="...">
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
+
+
+
 {{# each products}}
 <div class="row">
     {{# each this}}
