@@ -35,8 +35,8 @@ passport.use('local.signup', new LocalStrategy({
       return done(null, false, {message: 'Email is already in use.'});
     }
     var newUser = new User();
-    newUser.email = email;
-    newUser.password = newUser.encryptPassword(password);
+    newUser.local.email = email;
+    newUser.local.password = newUser.encryptPassword(password);
     newUser.save(function(err, result) {
       if (err) {
         return done(err);
@@ -61,7 +61,7 @@ passport.use('local.signin', new LocalStrategy({
     });
     return done(null, false, req.flash('error', messages));
   }
-  User.findOne({'email': email}, function(err, user) {
+  User.findOne({'local.email': email}, function(err, user) {
     if (err) {
       return done(err);
     }

@@ -85,15 +85,14 @@ router.post(
 );
 
 // Facebook oAuth routes
-router.get('/facebook', 
-  passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/user/signin' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
+  passport.authenticate('facebook', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/signin'
+  })
+);
 
 module.exports = router;
 
