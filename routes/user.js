@@ -97,8 +97,7 @@ router.get('/facebook/callback',
     } else {
       res.redirect("/user/profile");
     }
-  });
-);
+});
 
 module.exports = router;
 
