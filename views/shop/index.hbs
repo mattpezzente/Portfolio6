@@ -2,22 +2,21 @@
     <div class="container sub-head-wrapper">
         <h2>New Releases</h2>
         <section class="sub-head-latest-wrapper">
-            {{# each products}}
-                {{# each this}}                                
-                    <img class="sub-head-latest-img" src="{{this.imagePath}}" alt="{{this.title}}">
-                {{/each}}
-            {{/each}}
+            {{# each products}} {{# each this}}
+            <img class="sub-head-latest-img" src="{{this.imagePath}}" alt="{{this.title}}"> {{/each}} {{/each}}
         </section>
     </div>
 </section>
 <section class="container">
+    <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+        {{ successMsg }}
+    </div>
     <div class="row">
-    {{# each products}}
-        {{# each this}}
+        {{# each products}} {{# each this}}
         <div class="col-xs-12 col-md-6 col-xl-4">
             <div class="card">
                 <img class="card-img-top" src="{{this.imagePath}}" alt="...">
-                <div class="card-body">                    
+                <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
                     <div class="price">
                         {{currencyFormatter this.price}}
@@ -51,7 +50,6 @@
                 </div>
             </div>
         </div>
-        {{/each}}
-    {{/each}}
+        {{/each}} {{/each}}
     </div>
 </section>
