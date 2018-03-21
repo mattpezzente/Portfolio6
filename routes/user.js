@@ -84,6 +84,21 @@ router.post(
   }
 );
 
+// Facebook oAuth routes
+router.get('/facebook', passport.authenticate('facebook', {scope: ['email']}));
+
+router.get('/facebook/callback',
+  passport.authenticate('facebook', {failureRedirect: '/user/signin'}),
+  function(req, res) {    
+    if (req.session.oldUrl) {
+      var oldUrl = req.session.oldUrl;
+      req.session.oldUrl = null;
+      res.redirect(oldUrl);
+    } else {
+      res.redirect("/user/profile");
+    }
+});
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {

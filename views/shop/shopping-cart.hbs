@@ -1,6 +1,6 @@
 {{# if products }}
 <div class="row">
-    <div class="col-sm-6 col-md-6 offset-md-3 col-sm-offset-3">
+    <div class="col-sm-6 col-md-6 offset-md-3 offset-sm-3">
         <h2>Shopping Cart</h2>
         <ul class="list-group">
             {{# each products }}
@@ -39,8 +39,12 @@
 </div>
 {{ else }}
 <div class="row">
-    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+    <div class="col-sm-6 col-md-6 offset-md-3 offset-sm-3">
         <h2>No Items in Cart</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+            </li>
+        </ul>
     </div>
 </div>
 {{/if}}
