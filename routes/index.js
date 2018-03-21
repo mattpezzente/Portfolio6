@@ -101,10 +101,9 @@ router.post("/checkout", isLoggedIn, function(req, res, next) {
         paymentId: charge.id
       });
       order.save(function(err, result) {
-        req.flash("success", "Successfully bough``t product!");
+        req.flash("success", "Purchase Successful");
         req.session.cart = null;
-        // res.redirect("/");
-        console.log(result);
+        res.redirect("/");
       });
     }
   );
@@ -127,7 +126,7 @@ router.get("/add-to-wishlist/:id", isLoggedIn, function(req, res, next) {
           products: product
         });
         wishlist.save(function(err, results) {
-          res.redirect("/");          
+          res.redirect("/");
         });
       });
   });
