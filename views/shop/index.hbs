@@ -1,52 +1,57 @@
-<div class="page-header">
+<section class="sub-head-container">
+    <div class="container sub-head-wrapper">
+        <h2>New Releases</h2>
+        <section class="sub-head-latest-wrapper">
+            {{# each products}}
+                {{# each this}}                                
+                    <img class="sub-head-latest-img" src="{{this.imagePath}}" alt="{{this.title}}">
+                {{/each}}
+            {{/each}}
+        </section>
+    </div>
+</section>
+<section class="container">
+    <div class="row">
     {{# each products}}
-    <div style="display: flex;">
         {{# each this}}
-        <div>
-            <img class="img-fluid" style="width: 7rem;" src="{{this.imagePath}}" alt="...">
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card">
+                <img class="card-img-top" src="{{this.imagePath}}" alt="...">
+                <div class="card-body">                    
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <div class="price">
+                        {{currencyFormatter this.price}}
+                    </div>
+                </div>
+                <div class="card-btn-group">
+                    <a type="button" data-toggle="modal" data-target="#details{{this._id}}" class="btn btn-primary">Details</a>
+                    <a href="/add-to-wishlist/{{this._id}}" class="btn btn-primary">Favorite</a>
+                    <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="details{{this._id}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{this.title}} Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <img class="card-img-top" src="{{this.imagePath}}" alt="...">
+                    <div class="modal-body">
+                        {{this.description}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="/add-to-wishlist/{{this._id}}" class="btn btn-primary">Favorite</a>
+                        <a href="/add-to-cart/{{this._id}}" class="btn btn-primary pull-right">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
         </div>
         {{/each}}
-    </div>
     {{/each}}
-</div>
-
-{{# each products}}
-<div class="row">
-    {{# each this}}
-    <div class="col-sm-6 col-md-4">
-        <div class="card" style="width: 18rem; margin-top: 1rem;">
-            <img class="card-img-top" src="{{this.imagePath}}" alt="...">
-            <div class="card-body">
-                <a href="/add-to-wishlist/{{this._id}}" class="btn btn-primary pull-right">Favorite</a>
-                <h5 class="card-title">{{this.title}}</h5>
-                <div class="price">
-                    {{currencyFormatter this.price}}
-                </div>
-                <a style="color: #ffffff" type="button" data-toggle="modal" data-target="#details" class="btn btn-primary pull-left">Details</a>
-                <a href="/add-to-cart/{{this._id}}" class="btn btn-primary pull-right">Add To Cart</a>
-            </div>
-        </div>
     </div>
-    <div class="modal fade" id="details" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{this.title}} Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <img class="card-img-top" src="{{this.imagePath}}" alt="...">
-                <div class="modal-body">
-                    {{this.description}}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/add-to-cart/{{this._id}}" class="btn btn-primary pull-right">Add To Cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{/each}}
-</div>
-{{/each}}
+</section>
