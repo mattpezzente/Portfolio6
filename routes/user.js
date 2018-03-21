@@ -12,28 +12,23 @@ router.use(csrfProtection);
 
 router.get("/profile", isLoggedIn, function(req, res, next) {
   var wishlist = [];
-  Wishlist.find({ user: req.user }, function(err, list) {
-    if (err) {
-      return res.write("Error!");
-    }
-    console.log(list);
-    wishlist.push(list);
-  });
-  console.log(wishlist);
   Order.find({ user: req.user }, function(err, orders) {
-    if (err) {
-      return res.write("Error!");
-    }
+    if (err) return res.write("Error!");
     var cart;
     orders.forEach(function(order) {
       cart = new Cart(order.cart);
       order.items = cart.generateArray();
     });
-    // res.render("user/profile", {
-    //   orders: orders,
-    //   user: req.user,
-    //   wishlist: wishlist
-    // });
+
+    Wishlist.find({ user: req.session.passport.user }, function(err, list) {
+      if (err) res.render("user/profile", { orders: orders, user: req.user})      
+      console.log(list)
+      res.render("user/profile", {
+        orders: orders,
+        user: req.user,
+        wishlist: list
+      });
+    });
   });
 });
 

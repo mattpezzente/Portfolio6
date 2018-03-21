@@ -124,11 +124,10 @@ router.get("/add-to-wishlist/:id", isLoggedIn, function(req, res, next) {
         }
         var wishlist = new Wishlist({
           user: req.user,
-          product: product
+          products: product
         });
         wishlist.save(function(err, results) {
-          res.redirect("/");
-          console.log(wishlist);
+          res.redirect("/");          
         });
       });
   });

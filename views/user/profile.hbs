@@ -22,18 +22,17 @@
         {{/each}}
         <hr>
         <h2>My Wishlist</h2>
-        {{# each wishlist }}
+        
         <div class="panel panel-default">
             <div class="panel-body">
                 <ul class="list-group">
-                    {{# each this.items }}
+                    {{# each wishlist }}                    
                     <li class="list-group-item">
-                        <span class="badge">{{ this.price }}</span>{{ this.item.title }}
+                        <span class="badge">{{ this.products.title }}</span>
                     </li>
                     {{/each}}
                 </ul>
             </div>
         </div>
-        {{/each}}
     </div>
 </div>
