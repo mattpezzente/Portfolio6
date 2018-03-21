@@ -5,11 +5,21 @@ var passport = require("passport");
 
 var Order = require("../models/order");
 var Cart = require("../models/cart");
+var Wishlist = require("../models/wishlist");
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get("/profile", isLoggedIn, function(req, res, next) {
+  var wishlist = [];
+  Wishlist.find({ user: req.user }, function(err, list) {
+    if (err) {
+      return res.write("Error!");
+    }
+    console.log(list);
+    wishlist.push(list);
+  });
+  console.log(wishlist);
   Order.find({ user: req.user }, function(err, orders) {
     if (err) {
       return res.write("Error!");
@@ -19,7 +29,11 @@ router.get("/profile", isLoggedIn, function(req, res, next) {
       cart = new Cart(order.cart);
       order.items = cart.generateArray();
     });
-    res.render("user/profile", { orders: orders });
+    // res.render("user/profile", {
+    //   orders: orders,
+    //   user: req.user,
+    //   wishlist: wishlist
+    // });
   });
 });
 
@@ -85,11 +99,15 @@ router.post(
 );
 
 // Facebook oAuth routes
-router.get('/facebook', passport.authenticate('facebook', {scope: ['email']}));
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["email"] })
+);
 
-router.get('/facebook/callback',
-  passport.authenticate('facebook', {failureRedirect: '/user/signin'}),
-  function(req, res) {    
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", { failureRedirect: "/user/signin" }),
+  function(req, res) {
     if (req.session.oldUrl) {
       var oldUrl = req.session.oldUrl;
       req.session.oldUrl = null;
@@ -97,7 +115,8 @@ router.get('/facebook/callback',
     } else {
       res.redirect("/user/profile");
     }
-});
+  }
+);
 
 module.exports = router;
 

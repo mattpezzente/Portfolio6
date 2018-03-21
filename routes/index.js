@@ -4,6 +4,7 @@ var Cart = require("../models/cart");
 
 var Product = require("../models/product");
 var Order = require("../models/order");
+var Wishlist = require("../models/wishlist");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -100,13 +101,37 @@ router.post("/checkout", isLoggedIn, function(req, res, next) {
         paymentId: charge.id
       });
       order.save(function(err, result) {
-        req.flash("success", "Successfully bought product!");
+        req.flash("success", "Successfully bough``t product!");
         req.session.cart = null;
         // res.redirect("/");
         console.log(result);
       });
     }
   );
+});
+
+router.get("/add-to-wishlist/:id", isLoggedIn, function(req, res, next) {
+  var productId = req.params.id;
+  Product.findById(productId, function(err, product) {
+    if (err) {
+      return res.redirect("/");
+    }
+    Wishlist.findOne({ product: product, user: req.user })
+      .populate("products")
+      .exec(function(err, results) {
+        if (results) {
+          return res.redirect("/");
+        }
+        var wishlist = new Wishlist({
+          user: req.user,
+          product: product
+        });
+        wishlist.save(function(err, results) {
+          res.redirect("/");
+          console.log(wishlist);
+        });
+      });
+  });
 });
 
 module.exports = router;
