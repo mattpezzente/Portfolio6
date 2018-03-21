@@ -17,6 +17,7 @@
         <div class="card" style="width: 18rem; margin-top: 1rem;">
             <img class="card-img-top" src="{{this.imagePath}}" alt="...">
             <div class="card-body">
+                <a href="/add-to-wishlist/{{this._id}}" class="btn btn-primary pull-right">Favorite</a>
                 <h5 class="card-title">{{this.title}}</h5>
                 <div class="price">
                     {{currencyFormatter this.price}}
