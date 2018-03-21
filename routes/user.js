@@ -21,8 +21,7 @@ router.get("/profile", isLoggedIn, function(req, res, next) {
     });
 
     Wishlist.find({ user: req.session.passport.user }, function(err, list) {
-      if (err) res.render("user/profile", { orders: orders, user: req.user})      
-      console.log(list)
+      if (err) res.render("user/profile", { orders: orders, user: req.user})
       res.render("user/profile", {
         orders: orders,
         user: req.user,
