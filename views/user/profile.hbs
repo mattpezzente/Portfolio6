@@ -29,7 +29,7 @@
         <hr>
         <h2>My Wishlist</h2>
         <div class="panel panel-default">
-            <div class="panel-body">
+            <li class="panel-body" style="list-style: none;">
                 <ul class="list-group">
                     {{# each wishlist }}
                     <li class="list-group-item">
@@ -37,7 +37,7 @@
                             <span class=" badge ">{{ this.products.title }} | Price: ${{ this.products.price }}</span>
                         </button>
                         <a href="/add-to-cart/{{this.products._id}} " class="btn btn-primary pull-right ">Add To Cart</a>
-            </div>
+                    </li>
             </li>
             <div class="modal fade" id="details{{this.products._id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
