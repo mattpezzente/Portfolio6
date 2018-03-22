@@ -1,6 +1,11 @@
+<section class="sub-head-container">
+  <div class="container sub-head-wrapper">
+    <h2>Checkout</h2>
+  </div>
+</section>
+<br>
 <div class="row">
   <div class="col-sm-6 col-md-6 offset-md-3 offset-sm-3">
-    <h1>Checkout</h1>
     <h4>Your Total: {{currencyFormatter total}}</h4>
     {{#if noError}}
     <div id="charge-error" class="alert alert-danger">
@@ -36,7 +41,7 @@
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label" for="card-expiry-month">Expiration Date</label>
-          <div class="col-sm-9">
+          <div class="col-sm-9" style="padding-left: 2rem;">
             <div class="row">
               <div class="col-xs-3">
                 <select class="form-control col-sm-2" name="card-expiry-month" id="card-expiry-month">

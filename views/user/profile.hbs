@@ -1,7 +1,11 @@
+<section class="sub-head-container">
+    <div class="container sub-head-wrapper">
+        <h2>User Profile</h2>
+    </div>
+</section>
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <h1>User Profile</h1>
-        <hr>
+        <br>
         <h2>My Orders</h2>
         {{# each orders }}
         <div class="panel panel-default">
@@ -9,30 +13,55 @@
                 <ul class="list-group">
                     {{# each this.items }}
                     <li class="list-group-item">
-                        <span class="badge">{{ this.price }}</span>
-                        {{ this.item.title }} | {{ this.qty }} Units
+                        <span class="badge">${{ this.price }}</span>
+                        {{ this.item.title }} | Amount: {{ this.qty }}
                     </li>
                     {{/each}}
                 </ul>
             </div>
+            <br>
             <div class="panel-footer">
                 <strong>Total Price: ${{ this.cart.totalPrice }}</strong>
             </div>
         </div>
         {{/each}}
+        <br>
         <hr>
         <h2>My Wishlist</h2>
-        
         <div class="panel panel-default">
             <div class="panel-body">
                 <ul class="list-group">
-                    {{# each wishlist }}                    
+                    {{# each wishlist }}
                     <li class="list-group-item">
-                        <span class="badge">{{ this.products.title }}</span>
-                    </li>
-                    {{/each}}
-                </ul>
+                        <button type="button" data-toggle="modal" data-target="#details{{this.products._id}}">
+                            <span class=" badge ">{{ this.products.title }} | Price: ${{ this.products.price }}</span>
+                        </button>
+                        <a href="/add-to-cart/{{this.products._id}} " class="btn btn-primary pull-right ">Add To Cart</a>
             </div>
+            </li>
+            <div class="modal fade" id="details{{this.products._id}}" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{this.products.title}} Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <img class="card-img-top" src="{{this.products.imagePath}}" alt="...">
+                        <div class="modal-body">
+                            {{this.products.description}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="/add-to-cart/{{this.products._id}}" class="btn btn-primary pull-right">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            </ul>
         </div>
     </div>
+</div>
 </div>
