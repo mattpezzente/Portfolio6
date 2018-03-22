@@ -16,7 +16,7 @@
         {{# each products}} {{# each this}}
         <div class="col-xs-12 col-md-6 col-xl-4">
             <div class="card">
-                <img class="card-img-top" src="{{this.imagePath}}" alt="...">
+                <img class="card-img-top item" src="{{this.imagePath}}" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
                     <div class="price">
@@ -26,7 +26,7 @@
                 <div class="card-btn-group">
                     <a type="button" data-toggle="modal" data-target="#details{{this._id}}" class="btn btn-primary">Details</a>
                     <a href="/add-to-wishlist/{{this._id}}" class="btn btn-primary">Favorite</a>
-                    <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Add To Cart</a>
+                    <a href="/add-to-cart/{{this._id}}" class="btn btn-primary add-to-cart">Add To Cart</a>
                 </div>
             </div>
         </div>
