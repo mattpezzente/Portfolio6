@@ -13,16 +13,40 @@ html {
   align-items: center;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  color: #007bff;
+}
+
 .nav-flex-container {
   width: calc(100%/3)
+}
+
+@media only screen and (max-width: 610px) {
+  .nav-flex-container {
+    width: calc(100%/2)
+  }
+
+  .nav-flex-container:nth-child(1) {
+    display: none;
+  }
 }
 
 .nav-flex-container a {
   text-decoration: none;
 }
 
+@media only screen and (max-width: 1100px) {
+  .nav-flex-container a {
+    font-size: 0.875rem;
+  }
+}
+
 .nav-flex-container:nth-child(2) {
   text-align: center;
+}
+
+.nav-flex-container:nth-child(3) {
+  text-align: right;
 }
 
 .navbar-brand {
@@ -37,13 +61,25 @@ html {
 
 @media only screen and (max-width: 1200px) {
   .wd6international {
-    font-size: 2.3rem;
+    font-size: 2.25rem;
   }
 }
 
-@media only screen and (max-width: 1100px) {
-  .nav-flex-container a {
-    font-size: 0.875rem;
+@media only screen and (max-width: 992px) {
+  .wd6international {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .wd6international {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .wd6international {
+    font-size: 1.125rem;
   }
 }
 
@@ -146,17 +182,59 @@ html {
 .sub-head-wrapper {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+  .sub-head-wrapper {
+    max-width: 100%!important;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .sub-head-wrapper {
+    justify-content: center;
+  }
+}
+
+.sub-head-wrapper-home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
+@media only screen and (max-width: 550px) {
+  .sub-head-wrapper-home {
+    justify-content: center;
+  }
+}
+
+
 .sub-head-wrapper h2 {
-  display: contents;
+  display: block;
   color: #fff;
   text-transform: uppercase;
   font-style: italic;
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 850px) {
+  .sub-head-wrapper h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 536px) {
+  .sub-head-wrapper h2 {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .sub-head-latest-wrapper {  
@@ -168,6 +246,12 @@ html {
 .sub-head-latest-img {
   max-width: 3rem;
   margin: 0 0.25rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .sub-head-latest-img:nth-child(n+6) {
+    display: none;
+  }
 }
 
 /* Custom Class Styles */
